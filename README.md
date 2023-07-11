@@ -71,35 +71,35 @@ import { ref } from 'vue';
 **사용한 문법**
 
 
-  1. __v-model : 양방향 바인딩 구현__
-        
-        
-        <input type="text" placeholder="name here" v-model="name"/>
-        {{ name }}
-        
+  1. __v-model__ : 양방향 바인딩 구현
+
+      
+    <input type="text" placeholder="name here" v-model="name"/>
+    {{ name }}
+  
    
    
-  __ref : 전달된 데이터를 저장, 단일 속성 .value로 데이터 변경하여 반응형 객체를 반환한다
-  value로 새 값을 할당, 읽기 작업, 쓰기 작업 가능__
+  2. __ref__ : 전달된 데이터를 저장, 단일 속성 .value로 데이터 변경하여 반응형 객체를 반환한다
+  value로 새 값을 할당, 읽기 작업, 쓰기 작업 가능
 
-
-      <script setup>
-            const count = ref(0)
-            console.log(count.value) //0
+    
+    <script setup>
+          const count = ref(0)
+          console.log(count.value) //0
       
-            const increment = () =>{
-             count.value++
-            }
-      </script>
+          const increment = () =>{
+          count.value++
+                  }
+    </script>
       
-      <template>
+    <template>
            <p>{{ count.value }}</p>
            <button v-on:click="increment">숫자 증가</button>
-      </template>
-      
+    </template>
+    
 
 
-   __watch : 데이터 변경 시 호출될 감시 콜백을 선언 (특정 변수 변화 감지)__
+   3. __watch__ : 데이터 변경 시 호출될 감시 콜백을 선언 (특정 변수 변화 감지)
 
     watch(name, (newVal) => {
     localStorage.setItem("name", newVal);
@@ -108,8 +108,8 @@ import { ref } from 'vue';
 
 
 
-   __onMounted : 컴포넌트가 마운트된 후 호출될 콜백을 등록, 서버 사이트 렌더링 중에 호출되지 않음.
-   App component가 마운트 된 후 실행__
+   4.__onMounted__ : 컴포넌트가 마운트된 후 호출될 콜백을 등록, 서버 사이트 렌더링 중에 호출되지 않음.
+   App component가 마운트 된 후 실행
    
     onMounted(() => {
     name.value = localStorage.getItem("name") || "";
@@ -119,7 +119,7 @@ import { ref } from 'vue';
 
      
    
-
+<br />
 - **작성한 todolist 입력값과 options 값 저장하기**
 
 

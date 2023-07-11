@@ -33,41 +33,6 @@ vue.js
 
 
 ## 🎇code review
-
-- **사용자 이름을 input에 입력하면 localStorage에 저장 및 localStorage에서 빼오기**
-
-```ruby
-
-<script setup>
-import { ref } from 'vue';
-  
-  const name = ref("");
-  
-  watch(name,(newVal)=>{  
-    localStorage.setItem("name", newVal);
-  })
-
-  onMounted(() => {
-  name.value = localStorage.getItem("name") || "";
-});
-  
-</script>
-
-
-
-  <template>
-    <div>
-      <h1 class="title">
-        What's name
-        <input type="text" placeholder="name here" v-model="name" />
-        {{ name }}
-      </h1>
-    </div>
-  </template>
-  
-```
-
-
 **사용한 문법**
 
 
@@ -104,40 +69,83 @@ import { ref } from 'vue';
     watch(name, (newVal) => {
     localStorage.setItem("name", newVal);
     });
-    watch(변수, ()=>{콜백함수})
+    watch(변수, ()=>{콜백함수},{옵션})
+
+    watch( todos, (newVal) => {
+    localStorage.setItem("todos", JSON.stringify(newVal));
+    },{ deep: true }
+    );
+    객체의 내부 속성이 변경되는 것을 감지하려면 deep 옵션 넣기
 
 
-
-   4.__onMounted__ : 컴포넌트가 마운트된 후 호출될 콜백을 등록, 서버 사이트 렌더링 중에 호출되지 않음.
-   App component가 마운트 된 후 실행
+  4. __onMounted__ : 컴포넌트가 마운트된 후 호출될 콜백을 등록, 서버 사이트 렌더링 중에 호출되지 않음.
+    App component가 마운트 된 후 실행
    
     onMounted(() => {
     name.value = localStorage.getItem("name") || "";
     });
 
    
+<br />
 
+- **사용자 이름을 input에 입력하면 localStorage에 저장 및 localStorage에서 빼오기**
+
+```ruby
+
+<script setup>
+import { ref } from 'vue';
+  
+  const name = ref("");
+  
+  watch(name,(newVal)=>{  
+    localStorage.setItem("name", newVal);
+  })
+
+  onMounted(() => {
+  name.value = localStorage.getItem("name") || "";
+});
+  
+</script>
+
+
+
+  <template>
+    <div>
+      <h1 class="title">
+        What's name
+        <input type="text" placeholder="name here" v-model="name" />
+        {{ name }}
+      </h1>
+    </div>
+  </template>
+  
+```
      
    
 <br />
-- **작성한 todolist 입력값과 options 값 저장하기**
+
+- **작성한 todolist 입력값과 options 값 todos 배열에 저장하기**
 
 
 ```ruby
 <script setup>
 
-  const todos = ref([]); //입력값을 todos 배열에 push로 저장
+  const todos = ref([]); //입력값을 todos 배열에 push로 넣을것임
   const input_content = ref(""); //입력내용
-  const input_category = ref(null);//옵션
+  const input_category = ref('');//옵션 
 
 
 //입력값을 todos 배열에 넣는 함수
-// const addTodo = () => {
-//   if (input_content.value.trim() === "") return;
-//   todos.value.push({
-//     content: input_content.value,
-//   });
-// };
+ const addTodo = () => {
+   if (input_content.value.trim() === "" || input_category.value === null){ return; }
+   todos.value.push({
+          content: input_content.value,
+          category: input_category.value,
+          createAt: new Date().getTime(), //Date 객체 인스턴스 만들어 getTime 메소드 사용
+          done: false, //할 일을 완료했는지 여부, 초기값 false
+          editable: false, //할 일 편집 가능한지 여부
+        });
+       };
 
 </script>
 
@@ -178,6 +186,17 @@ import { ref } from 'vue';
   {{ input_category }}
 
 </template>
+```
+
+<br />
+
+- **todos 배열에 값 추가될 때마다 localStorage에 업데이트**
+
+```ruby
+watch(toodos,(newVal)=>{
+  localeStorage.setItem("todos",JSON.stringify(newVal))
+},{deep:true}
+);
 ```
 
 

@@ -79,12 +79,18 @@ vue.js
 
 
   4. __onMounted__ : 컴포넌트가 마운트된 후 호출 될 콜백을 등록, 서버 사이트 렌더링 중에 호출되지 않음.
-    App component가 마운트 된 후 실행
+ 
    
     onMounted(() => {
     name.value = localStorage.getItem("name") || "";
     });
 
+ 5. __computed__ : watch와 비슷한데.. 특정 변수의 data가 변경되면 이를 감지해 자동으로 다시 연산.<br />
+    특징으로 인자를 받지 않으며 computed 내에서 정의하는 익명함수는 반드시 값을 return 해야 함<br />
+    watch와의 차이? :  watch는 데이터가 변경되면 콜백 함수가 실행, computed는 데이터가 변경되면 연산을 다시 함<br />
+    아마 computed는 javascript의 고차함수를 쓸 때 주로 쓰는 것 같다.
+    
+    computed :
    
 <br />
 
@@ -211,27 +217,23 @@ watch(toodos,(newVal)=>{
 );
 
 ```
-
 <br />
 
 - **app.vue가 랜더링 될 때마다 localStorage의 데이터를 꺼내옴**
 
 ```ruby
-
-  onMounted(()=>{
-    name.value = localStorage.getItem('name') || '';
-    todos.value = JSON.parse(localStorage.getItem('todos') || [])
-  })
-
-
+onMounted(() => {
+  name.value = localStorage.getItem("name") || "";
+  todos.value = JSON.parse(localStorage.getItem("todos") || []); //JSON.parse는 문자로 저장된 localStorage 데이터를 객체로 변환해 줌. (JSON.stringify)
+});
 ```
-
 <br />
 
-- **app.vue가 랜더링 될 때마다 localStorage의 데이터를 꺼내옴**
+- **tosolist를 시간 순으로 정렬하기**
 
+```ruby
+//todos 배열에 createAt : Date()객체로 작성 시간 넣어놓음
 
+const todos_asc = computed()
 
-## 🔧upgrade 예정
-
-- 
+```

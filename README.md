@@ -78,7 +78,7 @@ vue.js
     객체의 내부 속성이 변경되는 것을 감지하려면 deep 옵션 넣기
 
 
-  4. __onMounted__ : 컴포넌트가 마운트된 후 호출될 콜백을 등록, 서버 사이트 렌더링 중에 호출되지 않음.
+  4. __onMounted__ : 컴포넌트가 마운트된 후 호출 될 콜백을 등록, 서버 사이트 렌더링 중에 호출되지 않음.
     App component가 마운트 된 후 실행
    
     onMounted(() => {
@@ -96,11 +96,13 @@ vue.js
 import { ref } from 'vue';
   
   const name = ref("");
-  
+
+//name 변수의 데이터가 변경되면 localStorage에 저장
   watch(name,(newVal)=>{  
     localStorage.setItem("name", newVal);
   })
 
+//app component가 랜더링 되면 name의 value에 localStorage에 데이터를 꺼내서 할당
   onMounted(() => {
   name.value = localStorage.getItem("name") || "";
 });
@@ -130,21 +132,23 @@ import { ref } from 'vue';
 ```ruby
 <script setup>
 
-  const todos = ref([]); //입력값을 todos 배열에 push로 넣을것임
+  const todos = ref([]); //입력값을 todos 배열에 push로 넣을 것
   const input_content = ref(""); //입력내용
-  const input_category = ref('');//옵션 
+  const input_category = ref(null);//옵션  null인 이유는 에러 방지 위해.
 
 
 //입력값을 todos 배열에 넣는 함수
  const addTodo = () => {
-   if (input_content.value.trim() === "" || input_category.value === null){ return; }
+   if (input_content.value.trim() === "" || input_category.value === null){ return; }//입력값이 없으면 return
    todos.value.push({
           content: input_content.value,
           category: input_category.value,
           createAt: new Date().getTime(), //Date 객체 인스턴스 만들어 getTime 메소드 사용
           done: false, //할 일을 완료했는지 여부, 초기값 false
           editable: false, //할 일 편집 가능한지 여부
-        });
+        })
+          input_content.value = '';  //submit 후 form 초기화 시킴
+          input_category.value= null;
        };
 
 </script>
@@ -152,38 +156,45 @@ import { ref } from 'vue';
 
 <template>
 
-//할 일 입력 input
- <input
-  type="text"
-  id="content"
-  placeholder="할일을 입력해주세요"
-  v-model="input_content"/>
-  {{ input_content }}
+  <section class="create-todo">
+    //할 일 입력 input
 
+    <form v-on:submit.prevent="addTodo"> //prevent는 form의 기본 동작인 폼 제출 방지하고 addTodo 함수 호출
+     <input
+      type="text"
+      id="content"
+      placeholder="할일을 입력해주세요"
+      v-model="input_content"/>
+      {{ input_content }}
+    
+    
+    //옵션 입력 input
+    <label>
+      <input
+        type="radio"
+        name="category"
+        id="category1"
+        value="business"
+        v-model="input_category"
+       />
+      <div>business</div>
+    </label>
+    
+    <label>
+      <input
+        type="radio"
+        name="category"
+        id="category2"
+        value="personal"
+        v-model="input_category"
+       />
+      <div>personal</div>
+    </label>
+      {{ input_category }}
+    <input type="submit" value="Add todo" /> //button 역할, 클릭하면 addTodo 호출
+   </form>
 
-//옵션 입력 input
-<label>
-  <input
-    type="radio"
-    name="category"
-    id="category1"
-    value="business"
-    v-model="input_category"
-   />
-  <div>business</div>
-</label>
-
-<label>
-  <input
-    type="radio"
-    name="category"
-    id="category2"
-    value="personal"
-    v-model="input_category"
-   />
-  <div>personal</div>
-</label>
-  {{ input_category }}
+  </section>
 
 </template>
 ```
@@ -193,11 +204,32 @@ import { ref } from 'vue';
 - **todos 배열에 값 추가될 때마다 localStorage에 업데이트**
 
 ```ruby
+
 watch(toodos,(newVal)=>{
   localeStorage.setItem("todos",JSON.stringify(newVal))
-},{deep:true}
+},{deep:true} //내부 속성 
 );
+
 ```
+
+<br />
+
+- **app.vue가 랜더링 될 때마다 localStorage의 데이터를 꺼내옴**
+
+```ruby
+
+  onMounted(()=>{
+    name.value = localStorage.getItem('name') || '';
+    todos.value = JSON.parse(localStorage.getItem('todos') || [])
+  })
+
+
+```
+
+<br />
+
+- **app.vue가 랜더링 될 때마다 localStorage의 데이터를 꺼내옴**
+
 
 
 ## 🔧upgrade 예정

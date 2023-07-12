@@ -89,8 +89,16 @@ vue.js
     특징으로 인자를 받지 않으며 computed 내에서 정의하는 익명함수는 반드시 값을 return 해야 함<br />
     watch와의 차이? :  watch는 데이터가 변경되면 콜백 함수가 실행, computed는 데이터가 변경되면 연산을 다시 함<br />
     아마 computed는 javascript의 고차함수를 쓸 때 주로 쓰는 것 같다.
-    
-    computed :
+
+```
+<div>{{ messege.split('').reverse().join('') ]}</div> ->가독성이 떨어짐
+
+computed : {
+  reverseMessage(){
+    return this.message.sprit('').reverse().join('');
+      }
+   }
+```
    
 <br />
 
@@ -234,6 +242,31 @@ onMounted(() => {
 ```ruby
 //todos 배열에 createAt : Date()객체로 작성 시간 넣어놓음
 
-const todos_asc = computed()
+const todos_asc = computed(()=>
+  todos.value.sort((a, b) => {
+    return b.createAt - a.createAt;
+  })
+)
 
+  <div
+    v-for="(todo, index) in todos_asc"
+    :key="index"
+    v-bind:class="`todo-item ${todo.done && 'done'}`" //done이 true일 때만 done class 추가, 완료 했는가?에 따라 스타일 달라짐
+    >
+```
+
+<br />
+
+- **remove btn**
+
+```ruby
+  
+ <button class="delete" @click="remoeveTodo(todo)">Delete</button>
+
+const remoeveTodo = (todo) => {
+  todos.value = todos.value.filter((t) => t !== todo); //filter의 parameter는 각 요소
+};
+//내가 클릭한 todo[i]와 todos의 각 요소가 다르다면
+
+    
 ```

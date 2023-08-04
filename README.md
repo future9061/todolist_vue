@@ -48,12 +48,11 @@ watch로 이름 입력 시 localStorage에 저장되어 새로 고침해도 사�
 
 <br>
 
-### todolist 배열에 저장
+### todolist localStolage에 저장
 
-#### [코드 보기](#-todolist-배열에-저장)
+#### [코드 보기](#-todolist-localstorage에-저장)
 
-할 일을 적는 input과 옵션 선택 input에 v-model을 적용시켜놓았습니다.<br>
-사용자가 할 일과 옵션을 기재하면 addTodo 함수에 databinding되며 배열에 push 합니다. <br>
+watch로 todos배열에 data가 변경되면 localStorage에 저장하여 새로 고침 시에도 todolist가 지워지지 않게 만들었습니다.
 
 <br>
 

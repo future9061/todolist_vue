@@ -18,7 +18,7 @@
   
 <img src="https://github.com/future9061/todolist_vue/assets/132829711/f00026bb-8882-4bf6-b3c0-1570438927b1">
 
-url
+https://todolist-future.netlify.app/
 
    <p align="start">
    vue.js로 첫 작품으로 To do List를 만들었습니다. composition API를 사용해 vue 내에 있는 함수들을 import 해서 사용했습니다.

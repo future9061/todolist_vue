@@ -1,14 +1,14 @@
 # 🎇목차
 
 1. [💻프로젝트 소개](#-프로젝트-소개)
-2. [✍ 주요 기능](#📌-주요-기능)
-3. [🧾 code review](#🧾-code-review)
-   - [사용자 이름 저장](#✔-사용자-이름-저장)
-   - [todolist 배열에 저장](#✔-todolist-배열에-저장)
-   - [todolist localStolage에 저장](#✔-todolist-localstorage에-저장)
-   - [todolist 시간순 정렬](#✔-todolist-시간순-정렬)
-   - [todolist 삭제](#✔-todolist-삭제)
-4. [📈 업그레이드](#📈-업그레이드)
+2. [✍ 주요 기능](#-주요-기능)
+3. [🧾 code review](#-code-review)
+   - [사용자 이름 저장](#-사용자-이름-저장)
+   - [todolist 배열에 저장](#-todolist-배열에-저장)
+   - [todolist localStolage에 저장](#-todolist-localstorage에-저장)
+   - [todolist 시간순 정렬](#-todolist-시간순-정렬)
+   - [todolist 삭제](#-todolist-삭제)
+4. [📈 업그레이드](#-업그레이드)
 
 <br>
 
@@ -32,7 +32,7 @@ url
 
 ### 사용자 이름 저장
 
-#### [코드 보기](#✔-사용자-이름-저장)
+#### [코드 보기](#-사용자-이름-저장)
 
 v-model,ref,watch를 사용해 input에 입력된 사용자 이름을 ref에 binding 하고,<br>
 watch로 이름 입력 시 localStorage에 저장되어 새로 고침해도 사용자 이름이 지워지지 않게 만들었습니다.<br>
@@ -41,7 +41,7 @@ watch로 이름 입력 시 localStorage에 저장되어 새로 고침해도 사�
 
 ### todolist 배열에 저장
 
-#### [코드 보기](#✔-todolist-배열에-저장)
+#### [코드 보기](#-todolist-배열에-저장)
 
 할 일을 적는 input과 옵션 선택 input에 v-model을 적용시켜놓았습니다.<br>
 사용자가 할 일과 옵션을 기재하면 addTodo 함수에 databinding되며 배열에 push 합니다. <br>
@@ -50,7 +50,7 @@ watch로 이름 입력 시 localStorage에 저장되어 새로 고침해도 사�
 
 ### todolist 배열에 저장
 
-#### [코드 보기](#✔-todolist-배열에-저장)
+#### [코드 보기](#-todolist-배열에-저장)
 
 할 일을 적는 input과 옵션 선택 input에 v-model을 적용시켜놓았습니다.<br>
 사용자가 할 일과 옵션을 기재하면 addTodo 함수에 databinding되며 배열에 push 합니다. <br>
@@ -59,7 +59,7 @@ watch로 이름 입력 시 localStorage에 저장되어 새로 고침해도 사�
 
 ### todolist 시간순 정렬
 
-#### [코드 보기](#✔-todolist-시간순-정렬)
+#### [코드 보기](#-todolist-시간순-정렬)
 
 todos 배열에 Data 객체로 시간을 저장해두었습니다.<br>
 todos 배열에서 sort로 시간순으로 정렬하고 반환한 배열을 최종적으로 사용자에게 보여줍니다.<br>
@@ -68,7 +68,7 @@ todos 배열에서 sort로 시간순으로 정렬하고 반환한 배열을 최�
 
 ### todolist 삭제
 
-#### [코드 보기](#✔-todolist-삭제)
+#### [코드 보기](#-todolist-삭제)
 
 delete btn 클릭시 클릭한 요소를 filter로 제외하고 새로운 배열을 반환합니다.
 
@@ -80,12 +80,15 @@ delete btn 클릭시 클릭한 요소를 filter로 제외하고 새로운 배열
 
 1. **v-model** : 양방향 바인딩 구현
 
-<input type="text" placeholder="name here" v-model="name"/>
-{{ name }}
+```
+   <input type="text" placeholder="name here" v-model="name"/>
+   {{ name }}
+```
 
 2. **ref** : 전달된 데이터를 저장, 단일 속성 .value로 데이터 변경하여 반응형 객체를 반환한다
    value로 새 값을 할당, 읽기 작업, 쓰기 작업 가능
 
+```
     <script setup>
           const count = ref(0)
           console.log(count.value) //0
@@ -99,9 +102,11 @@ delete btn 클릭시 클릭한 요소를 filter로 제외하고 새로운 배열
            <p>{{ count.value }}</p>
            <button v-on:click="increment">숫자 증가</button>
     </template>
+```
 
 3. **watch** : 데이터 변경 시 호출될 감시 콜백을 선언 (특정 변수 변화 감지)
 
+```
    watch(name, (newVal) => {
    localStorage.setItem("name", newVal);
    });
@@ -112,14 +117,17 @@ delete btn 클릭시 클릭한 요소를 filter로 제외하고 새로운 배열
    },{ deep: true }
    );
    객체의 내부 속성이 변경되는 것을 감지하려면 deep 옵션 넣기
+```
 
-4. **onMounted** : 컴포넌트가 마운트된 후 호출 될 콜백을 등록, 서버 사이트 렌더링 중에 호출되지 않음.
+5. **onMounted** : 컴포넌트가 마운트된 후 호출 될 콜백을 등록, 서버 사이트 렌더링 중에 호출되지 않음.
 
+```
    onMounted(() => {
    name.value = localStorage.getItem("name") || "";
    });
+```
 
-5. **computed** : watch와 비슷한데.. 특정 변수의 data가 변경되면 이를 감지해 자동으로 다시 연산.<br />
+6. **computed** : watch와 비슷한데.. 특정 변수의 data가 변경되면 이를 감지해 자동으로 다시 연산.<br />
    특징으로 인자를 받지 않으며 computed 내에서 정의하는 익명함수는 반드시 값을 return 해야 함<br />
    watch와의 차이? : watch는 데이터가 변경되면 콜백 함수가 실행, computed는 데이터가 변경되면 연산을 다시 함<br />
    아마 computed는 javascript의 고차함수를 쓸 때 주로 쓰는 것 같다.

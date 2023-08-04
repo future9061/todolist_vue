@@ -1,24 +1,40 @@
+@font-face {
+  font-family: "iceJaram-Rg";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/iceJaram-Rg.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "omyu_pretty";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
-  --primary: #ea40a4;
-  --business: #3a82ee;
+  --primary: #fdffa3;
+  --business: #c0fbff;
   --personal: var(--primary);
-  --light: #eee;
+  --light: #f0ffe3;
   --grey: #888;
   --grey2: #ccc;
   --dark: #313154;
-  --danger: #ff5b57;
+  --danger: #ff8886;
 
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 
-  --business-glow: 0px 0px 4px rgba(58, 130, 238, 0.75);
-  --personal-glow: 0px 0px 4px rgba(234, 64, 164, 0.75);
+  --business-glow: 0px 0px 4px rgba(56, 211, 254, 0.75);
+  --personal-glow: 0px 0px 4px rgba(251, 229, 63, 0.75);
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Verdana, sans-serif;
+  font-family: "omyu_pretty", sans-serif;
 }
 
 input:not([type="radio"]):not([type="checkbox"]),
@@ -65,6 +81,8 @@ h4 {
 
 .greeting .title {
   display: flex;
+  font-family: "iceJaram-Rg";
+  margin-right: 40px;
 }
 
 .greeting .title input {
@@ -73,15 +91,25 @@ h4 {
   min-width: 0;
 }
 
-.greeting .title,
-.greeting .title input {
+.greeting .title {
   color: var(--dark);
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 700;
+}
+
+.greeting .title input {
+  margin-left: 30px;
+  font-size: 1rem;
+  color: #888;
 }
 .greeting .title input::placeholder {
   font-size: 1rem;
   font-weight: 400;
+}
+
+.create-todo h2 {
+  font-size: 25px;
+  transform: translateY(-25px);
 }
 
 .create-todo input[type="text"] {
@@ -170,7 +198,7 @@ input:checked ~ .bubble::after {
   width: 100%;
   font-size: 1.125rem;
   padding: 1rem 1.5rem;
-  color: #fff;
+  color: #000000;
   background-color: var(--primary);
   border-radius: 0.5rem;
   box-shadow: var(--personal-glow);

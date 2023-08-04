@@ -62,19 +62,19 @@ onMounted(() => {
   <main class="app">
     <section class="greeting">
       <h1 class="title">
-        What's Up
+        "오늘"은 흘러가는 것이 아니라 채워가는 것
         <input type="text" placeholder="name here" v-model="name" />
       </h1>
     </section>
 
     <section class="create-todo">
-      <h2>CREATE A TODO</h2>
+      <h2>오늘 하루 계획을 세워 완성해보세요.</h2>
       <form id="new-todo-form" v-on:submit.prevent="addTodo">
-        <h4>What's on your todo list?</h4>
+        <h4>오늘 할 일 목록</h4>
         <input
           type="text"
           id="content"
-          placeholder="e.g portfolio finish"
+          placeholder="ex)typescript 토이 프로젝트 만들기"
           v-model="input_content"
         />
         <!-- {{ input_content  }} -->
@@ -88,7 +88,7 @@ onMounted(() => {
               v-model="input_category"
             />
             <span class="bubble business"></span>
-            <div>business</div>
+            <div>공부</div>
           </label>
           <label>
             <input
@@ -99,11 +99,11 @@ onMounted(() => {
               v-model="input_category"
             />
             <span class="bubble personal"></span>
-            <div>personal</div>
+            <div>여가 생활</div>
           </label>
         </div>
         <!-- {{ input_category }} -->
-        <input type="submit" value="Add todo" />
+        <input type="submit" value="Click!" class="plus-btn" />
       </form>
     </section>
 

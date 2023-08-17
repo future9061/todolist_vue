@@ -1,14 +1,15 @@
 # 🎇목차
 
 1. [💻프로젝트 소개](#-프로젝트-소개)
-2. [✍ 주요 기능](#-주요-기능)
-3. [🧾 code review](#-code-review)
+2. [📦 개발 환경](#-개발-환경)
+3. [✍ 주요 기능](#-주요-기능)
+4. [🧾 code review](#-code-review)
    - [사용자 이름 저장](#-사용자-이름-저장)
    - [todolist 배열에 저장](#-todolist-배열에-저장)
    - [todolist localStolage에 저장](#-todolist-localstorage에-저장)
    - [todolist 시간순 정렬](#-todolist-시간순-정렬)
    - [todolist 삭제](#-todolist-삭제)
-4. [📈 업그레이드](#-업그레이드)
+5. [📈 업그레이드](#-업그레이드)
 
 <br>
 
@@ -25,6 +26,14 @@ https://todolist-future.netlify.app/
    </p>
    
 </div>
+
+<br>
+
+## 📦 개발 환경
+
+- **editor** : <img src="https://img.shields.io/badge/VisualStudioCode-007ACC?style=flat-square&logo=visualstudiocode&logoColor=white"/>
+- **language** : <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white"/>
+- **framework** : <img src="https://img.shields.io/badge/vue-4FC08D?style=flat-square&logo=vue.js&logoColor=white"/>
 
 <br>
 
